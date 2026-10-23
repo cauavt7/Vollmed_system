@@ -15,3 +15,47 @@ class Medico(models.Model):
 
     def __str__(self):
         return F' {self.nome} {self.Sobrenome}'
+
+
+class Paciente(models.Model):
+    nome = models.CharField(max_length=50)
+    sobrenome = models.CharField(max_length=40)
+    email = models.EmailField()
+    telefone = models.CharField(max_length=20)
+    cpf = models.CharField(max_length=11)
+    especialidade = models.CharField(max_length=20)
+    ativo = models.BooleanField(default=True)
+
+    def __str__(self):
+        return F' {self.nome} {self.Sobrenome}'
+    
+
+class Consulta(models.Model):
+    Paciente_id =models.ForeignKey(Paciente, on_delete=models.CASCADE)
+    medico_id =models.ForeignKey(Medico, on_delete=models.CASCADE)
+
+    Horario = models.DateTimeField
+    observacao =models.TextField(blank=True) 
+
+    status = models.CharField(
+        default='A'
+        max_length='1'
+        choices=(
+                ('A')
+                ()
+                ()
+                ()
+
+
+
+
+
+            )
+
+
+
+        )  
+
+
+    
+
