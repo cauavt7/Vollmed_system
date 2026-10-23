@@ -3,7 +3,7 @@ from django.utils import timezone
 
 class Medico(models.Model):
     nome = models.CharField( max_length=50)
-    Sobrenome =models.CharField(max_length=40)
+    sobrenome =models.CharField(max_length=40)
     email = models.EmailField()
     Criacao_data = models.DateTimeField(default=timezone.now)
     telefone = models.CharField(max_length=15)
@@ -38,23 +38,19 @@ class Consulta(models.Model):
     observacao =models.TextField(blank=True) 
 
     status = models.CharField(
-        default='A'
-        max_length='1'
+        default='A',
+        max_length=1,
         choices=(
-                ('A')
-                ()
-                ()
-                ()
+                ('A','Agendada'),
+                ('X','Cancelada'),
+                ('C','Confirmada'),
+                ('R','Realizada'),
 
+        )
+    ) 
 
-
-
-
-            )
-
-
-
-        )  
+    def __str__(self):
+        return f'Consulta {self.get_status_display()} — {self.paciente_id}' 
 
 
     
